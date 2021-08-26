@@ -1,3 +1,7 @@
+<!-- default badges list -->
+![](https://img.shields.io/endpoint?url=https://codecentral.devexpress.com/api/v1/VersionRange/395061965/21.1.3%2B)
+[![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
+<!-- default badges end -->
 # How to Create a Report Bound to the SQL Data Source
 
 This example demonstrates how to create a master-detail report in code and use the **SqlDataSource** component to bind a report to the Microsoft SQl Server database.
