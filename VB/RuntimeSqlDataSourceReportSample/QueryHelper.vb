@@ -21,7 +21,7 @@ Namespace RuntimeSqlDataSourceReportSample
 									System.ComponentModel.ListSortDirection.Descending).
 									GroupFilter("[ProductCount] > 7").
 									Build("Categories")
-			query.Name = "Categories with 7 and More Products"
+			query.Name = "Categories with 7 or More Products"
 			Return query
 		End Function
 		#End Region

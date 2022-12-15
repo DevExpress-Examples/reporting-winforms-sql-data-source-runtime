@@ -16,7 +16,7 @@ namespace RuntimeSqlDataSourceReportSample
                                     System.ComponentModel.ListSortDirection.Descending)
                                 .GroupFilter("[ProductCount] > 7")
                                 .Build("Categories");
-            query.Name = "Categories with 7 and More Products";
+            query.Name = "Categories with 7 or More Products";
             return query;
         }
         public static SqlQuery CreateStoredProcedureQuery()
