@@ -10,7 +10,7 @@ class CustomConnectionProviderService : IConnectionProviderService
         {
             MsSqlConnectionParameters connectionParameters = new MsSqlConnectionParameters()
             {
-                ServerName = "localhost",
+                ServerName = "localhost\\SQLEXPRESS",
                 DatabaseName = "NorthWind",
                 UserName = null,
                 Password = null,
