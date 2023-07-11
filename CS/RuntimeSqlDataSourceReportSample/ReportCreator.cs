@@ -112,8 +112,10 @@ namespace RuntimeSqlDataSourceReportSample
             XRTableCell cellDetail2 = new XRTableCell();
             cellDetail2.TextAlignment = TextAlignment.MiddleRight;
 
-            cellDetail1.ExpressionBindings.Add(new ExpressionBinding("BeforePrint", "Text", "[ProductName]"));
-            cellDetail2.ExpressionBindings.Add(new ExpressionBinding("BeforePrint", "Text",
+            cellDetail1.ExpressionBindings.Add(
+                new ExpressionBinding("BeforePrint", "Text", "[ProductName]"));
+            cellDetail2.ExpressionBindings.Add(
+                new ExpressionBinding("BeforePrint", "Text",
                 "FormatString('{0:$0.00}', [UnitPrice])"));
 
 
@@ -152,12 +154,12 @@ namespace RuntimeSqlDataSourceReportSample
             table.WidthF = report.PageWidth - report.Margins.Left - report.Margins.Right;
         }
 
-        static void tableHeader_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        static void tableHeader_BeforePrint(object sender, System.ComponentModel.CancelEventArgs e)
         {
             AdjustTableWidth(sender as XRTable);
         }
 
-        static void tableDetail_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        static void tableDetail_BeforePrint(object sender, System.ComponentModel.CancelEventArgs e)
         {
             AdjustTableWidth(sender as XRTable);
         }

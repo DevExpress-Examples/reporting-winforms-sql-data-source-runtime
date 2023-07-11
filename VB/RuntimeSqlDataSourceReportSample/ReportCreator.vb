@@ -50,10 +50,11 @@ Namespace RuntimeSqlDataSourceReportSample
 			' Create a new label bound to the CategoryName data field.
 			Dim labelDetail As New XRLabel()
 			labelDetail.Font = New Font("Tahoma", 10, FontStyle.Bold)
-			labelDetail.WidthF = 300F
+			labelDetail.WidthF = 300.0F
 
 			' Bind the label to the CategoryName data field.
-			labelDetail.ExpressionBindings.Add(New ExpressionBinding("BeforePrint", "Text", "'Category: ' + [CategoryName]"))
+			labelDetail.ExpressionBindings.Add(
+				New ExpressionBinding("BeforePrint", "Text", "'Category: ' + [CategoryName]"))
 
 			' Create a detail band and display the category name in it.
 			Dim detailBand As New DetailBand()
@@ -114,8 +115,10 @@ Namespace RuntimeSqlDataSourceReportSample
 			Dim cellDetail2 As New XRTableCell()
 			cellDetail2.TextAlignment = TextAlignment.MiddleRight
 
-			cellDetail1.ExpressionBindings.Add(New ExpressionBinding("BeforePrint", "Text", "[ProductName]"))
-			cellDetail2.ExpressionBindings.Add(New ExpressionBinding("BeforePrint", "Text", "FormatString('{0:$0.00}', [UnitPrice])"))
+			cellDetail1.ExpressionBindings.Add(
+				New ExpressionBinding("BeforePrint", "Text", "[ProductName]"))
+			cellDetail2.ExpressionBindings.Add(
+				New ExpressionBinding("BeforePrint", "Text", "FormatString('{0:$0.00}', [UnitPrice])"))
 
 
 			tableDetail.Rows(0).Cells.AddRange(New XRTableCell() { cellDetail1, cellDetail2 })
@@ -152,13 +155,15 @@ Namespace RuntimeSqlDataSourceReportSample
 			table.WidthF = report.PageWidth - report.Margins.Left - report.Margins.Right
 		End Sub
 
-		Private Shared Sub tableHeader_BeforePrint(ByVal sender As Object, ByVal e As System.Drawing.Printing.PrintEventArgs)
+		Private Shared Sub tableHeader_BeforePrint(ByVal sender As Object,
+												   ByVal e As System.ComponentModel.CancelEventArgs)
 			AdjustTableWidth(TryCast(sender, XRTable))
 		End Sub
 
-		Private Shared Sub tableDetail_BeforePrint(ByVal sender As Object, ByVal e As System.Drawing.Printing.PrintEventArgs)
+		Private Shared Sub tableDetail_BeforePrint(ByVal sender As Object,
+												   ByVal e As System.ComponentModel.CancelEventArgs)
 			AdjustTableWidth(TryCast(sender, XRTable))
 		End Sub
-		#End Region
+#End Region
 	End Class
 End Namespace

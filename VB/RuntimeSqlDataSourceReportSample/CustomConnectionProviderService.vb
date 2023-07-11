@@ -8,7 +8,7 @@ Friend Class CustomConnectionProviderService
 	Public Function LoadConnection(ByVal connectionName As String) As SqlDataConnection Implements IConnectionProviderService.LoadConnection
 		If connectionName = "MyRuntimeConnection" Then
 			Dim connectionParameters As New MsSqlConnectionParameters() With
-				{.ServerName = "localhost",
+				{.ServerName = "localhost\SQLEXPRESS",
 				.DatabaseName = "NorthWind",
 				.UserName = Nothing,
 				.Password = Nothing,
