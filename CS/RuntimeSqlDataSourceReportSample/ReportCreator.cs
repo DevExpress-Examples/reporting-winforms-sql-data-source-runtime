@@ -1,12 +1,15 @@
+#region usings
 using DevExpress.DataAccess.Sql;
 using DevExpress.XtraPrinting;
 using DevExpress.XtraReports.UI;
 using System.Drawing;
+#endregion
 
 namespace RuntimeSqlDataSourceReportSample
 {
     class ReportCreator
     {
+        #region CreateReport
         public static XtraReport CreateReport(object dataSource)
         {
             SqlDataSource ds = dataSource as SqlDataSource;
@@ -27,7 +30,9 @@ namespace RuntimeSqlDataSourceReportSample
             CreateDetailReport(report, ds.Queries[0].Name + "." + ds.Relations[0].Name);
             return report;
         }
+        #endregion
 
+        #region CreateMasterReport
         private static void CreateReportHeader(XtraReport report, string caption)
         {
             // Create a report title.
@@ -62,7 +67,9 @@ namespace RuntimeSqlDataSourceReportSample
             labelDetail.TopF = detailBand.LocationFloat.Y + 20F;
             detailBand.Controls.Add(labelDetail);
         }
+        #endregion 
 
+        #region CreateDetailReport
         private static void CreateDetailReport(XtraReport report, string dataMember)
         {
             // Create a detail report band and bind it to data.
@@ -163,5 +170,6 @@ namespace RuntimeSqlDataSourceReportSample
         {
             AdjustTableWidth(sender as XRTable);
         }
+        #endregion
     }
 }

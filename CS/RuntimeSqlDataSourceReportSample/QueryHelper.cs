@@ -1,9 +1,12 @@
+#region #using
 using DevExpress.DataAccess.Sql;
+#endregion
 
 namespace RuntimeSqlDataSourceReportSample
 {
     static class QueryHelper
     {
+        #region CreateSelectQuery
         public static SqlQuery CreateSelectQuery()
         {
             SelectQuery query = SelectQueryFluentBuilder
@@ -19,6 +22,8 @@ namespace RuntimeSqlDataSourceReportSample
             query.Name = "Categories with 7 or More Products";
             return query;
         }
+        #endregion
+        #region CreateStoredProcedureQuery
         public static SqlQuery CreateStoredProcedureQuery()
         {
             StoredProcQuery spQuery =
@@ -27,6 +32,8 @@ namespace RuntimeSqlDataSourceReportSample
             spQuery.Parameters.Add(new QueryParameter("@OrdYear", typeof(string), "1997"));
             return spQuery;
         }
+        #endregion
+        #region CreateCustomSqlQuery
         public static SqlQuery CreateCustomSqlQuery()
         {
             CustomSqlQuery query = new CustomSqlQuery();
@@ -34,5 +41,6 @@ namespace RuntimeSqlDataSourceReportSample
             query.Sql = "Select top 10 * from Products";
             return query;
         }
+        #endregion
     }
 }
