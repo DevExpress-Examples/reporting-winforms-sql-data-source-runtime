@@ -2,7 +2,7 @@
 Imports DevExpress.DataAccess.Sql
 Imports DevExpress.XtraPrinting
 Imports DevExpress.XtraReports.UI
-Imports System.Drawing
+Imports DevExpress.Drawing
 #End Region
 
 Namespace RuntimeSqlDataSourceReportSample
@@ -35,7 +35,7 @@ Namespace RuntimeSqlDataSourceReportSample
 		Private Shared Sub CreateReportHeader(ByVal report As XtraReport, ByVal caption As String)
 			' Create a report title.
 			Dim label As New XRLabel()
-			label.Font = New Font("Tahoma", 12, FontStyle.Bold)
+			label.Font = New DXFont("Tahoma", 12, DXFontStyle.Bold)
 			label.Text = caption
 			label.WidthF = 300F
 
@@ -49,7 +49,7 @@ Namespace RuntimeSqlDataSourceReportSample
 		Private Shared Sub CreateDetail(ByVal report As XtraReport)
 			' Create a new label bound to the CategoryName data field.
 			Dim labelDetail As New XRLabel()
-			labelDetail.Font = New Font("Tahoma", 10, FontStyle.Bold)
+			labelDetail.Font = New DXFont("Tahoma", 10, DXFontStyle.Bold)
 			labelDetail.WidthF = 300.0F
 
 			' Bind the label to the CategoryName data field.
@@ -83,8 +83,8 @@ Namespace RuntimeSqlDataSourceReportSample
 			tableHeader.Rows.Add(New XRTableRow())
 			tableHeader.Borders = BorderSide.All
 			tableHeader.BorderColor = Color.DarkGray
-			tableHeader.Font = New Font("Tahoma", 10, FontStyle.Bold)
-			tableHeader.Padding = 10
+			tableHeader.Font = New DXFont("Tahoma", 10, DXFontStyle.Bold)
+			tableHeader.Padding = New PaddingInfo(10)
 			tableHeader.TextAlignment = TextAlignment.MiddleLeft
 
 			Dim cellHeader1 As New XRTableCell()
@@ -107,8 +107,8 @@ Namespace RuntimeSqlDataSourceReportSample
 			tableDetail.Rows.Add(New XRTableRow())
 			tableDetail.Borders = BorderSide.Left Or BorderSide.Right Or BorderSide.Bottom
 			tableDetail.BorderColor = Color.DarkGray
-			tableDetail.Font = New Font("Tahoma", 10)
-			tableDetail.Padding = 10
+			tableDetail.Font = New DXFont("Tahoma", 10)
+			tableDetail.Padding = New PaddingInfo(10)
 			tableDetail.TextAlignment = TextAlignment.MiddleLeft
 
 			Dim cellDetail1 As New XRTableCell()

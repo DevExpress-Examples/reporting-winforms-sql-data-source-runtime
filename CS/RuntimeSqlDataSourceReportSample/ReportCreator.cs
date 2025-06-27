@@ -1,5 +1,6 @@
 #region usings
 using DevExpress.DataAccess.Sql;
+using DevExpress.Drawing;
 using DevExpress.XtraPrinting;
 using DevExpress.XtraReports.UI;
 using System.Drawing;
@@ -37,7 +38,7 @@ namespace RuntimeSqlDataSourceReportSample
         {
             // Create a report title.
             XRLabel label = new XRLabel();
-            label.Font = new Font("Tahoma", 12, FontStyle.Bold);
+            label.Font = new DXFont("Tahoma", 12, DXFontStyle.Bold);
             label.Text = caption;
             label.WidthF = 300F;
 
@@ -52,7 +53,7 @@ namespace RuntimeSqlDataSourceReportSample
         {
             // Create a new label bound to the CategoryName data field.
             XRLabel labelDetail = new XRLabel();
-            labelDetail.Font = new Font("Tahoma", 10, FontStyle.Bold);
+            labelDetail.Font = new DXFont("Tahoma", 10, DXFontStyle.Bold);
             labelDetail.WidthF = 300F;
 
             // Bind the label to the CategoryName data field.
@@ -67,18 +68,15 @@ namespace RuntimeSqlDataSourceReportSample
             labelDetail.TopF = detailBand.LocationFloat.Y + 20F;
             detailBand.Controls.Add(labelDetail);
         }
-        #endregion 
-
-        #region CreateDetailReport
-        private static void CreateDetailReport(XtraReport report, string dataMember)
-        {
-            // Create a detail report band and bind it to data.
+        #region CreateDetailReport  
+        private static void CreateDetailReport(XtraReport report,string dataMember) {
+            // Create a detail report band and bind it to data.  
             DetailReportBand detailReportBand = new DetailReportBand();
             report.Bands.Add(detailReportBand);
             detailReportBand.DataSource = report.DataSource;
             detailReportBand.DataMember = dataMember;
 
-            // Add a header to the detail report.
+            // Add a header to the detail report.  
             ReportHeaderBand detailReportHeader = new ReportHeaderBand();
             detailReportBand.Bands.Add(detailReportHeader);
 
@@ -87,8 +85,8 @@ namespace RuntimeSqlDataSourceReportSample
             tableHeader.Rows.Add(new XRTableRow());
             tableHeader.Borders = BorderSide.All;
             tableHeader.BorderColor = Color.DarkGray;
-            tableHeader.Font = new Font("Tahoma", 10, FontStyle.Bold);
-            tableHeader.Padding = 10;
+            tableHeader.Font = new DXFont("Tahoma",10,DXFontStyle.Bold);
+            tableHeader.Padding = new PaddingInfo(10,10,10,10);
             tableHeader.TextAlignment = TextAlignment.MiddleLeft;
 
             XRTableCell cellHeader1 = new XRTableCell();
@@ -97,22 +95,22 @@ namespace RuntimeSqlDataSourceReportSample
             cellHeader2.Text = "Unit Price";
             cellHeader2.TextAlignment = TextAlignment.MiddleRight;
 
-            tableHeader.Rows[0].Cells.AddRange(new XRTableCell[] { cellHeader1, cellHeader2 });
+            tableHeader.Rows[0].Cells.AddRange(new XRTableCell[] { cellHeader1,cellHeader2 });
             detailReportHeader.Height = tableHeader.Height;
             detailReportHeader.Controls.Add(tableHeader);
 
-            // Adjust the table width.
+            // Adjust the table width.  
             tableHeader.BeforePrint += tableHeader_BeforePrint;
             tableHeader.EndInit();
 
-            // Create a detail band.
+            // Create a detail band.  
             XRTable tableDetail = new XRTable();
             tableDetail.BeginInit();
             tableDetail.Rows.Add(new XRTableRow());
             tableDetail.Borders = BorderSide.Left | BorderSide.Right | BorderSide.Bottom;
             tableDetail.BorderColor = Color.DarkGray;
-            tableDetail.Font = new Font("Tahoma", 10);
-            tableDetail.Padding = 10;
+            tableDetail.Font = new DXFont("Tahoma",10);
+            tableDetail.Padding = new PaddingInfo(10); 
             tableDetail.TextAlignment = TextAlignment.MiddleLeft;
 
             XRTableCell cellDetail1 = new XRTableCell();
@@ -120,24 +118,23 @@ namespace RuntimeSqlDataSourceReportSample
             cellDetail2.TextAlignment = TextAlignment.MiddleRight;
 
             cellDetail1.ExpressionBindings.Add(
-                new ExpressionBinding("BeforePrint", "Text", "[ProductName]"));
+                new ExpressionBinding("BeforePrint","Text","[ProductName]"));
             cellDetail2.ExpressionBindings.Add(
-                new ExpressionBinding("BeforePrint", "Text",
+                new ExpressionBinding("BeforePrint","Text",
                 "FormatString('{0:$0.00}', [UnitPrice])"));
 
-
-            tableDetail.Rows[0].Cells.AddRange(new XRTableCell[] { cellDetail1, cellDetail2 });
+            tableDetail.Rows[0].Cells.AddRange(new XRTableCell[] { cellDetail1,cellDetail2 });
 
             DetailBand detailBand = new DetailBand();
             detailBand.Height = tableDetail.Height;
             detailReportBand.Bands.Add(detailBand);
             detailBand.Controls.Add(tableDetail);
 
-            // Adjust the table width.
+            // Adjust the table width.  
             tableDetail.BeforePrint += tableDetail_BeforePrint;
             tableDetail.EndInit();
 
-            // Create and assign different odd and even styles.
+            // Create and assign different odd and even styles.  
             XRControlStyle oddStyle = new XRControlStyle();
             XRControlStyle evenStyle = new XRControlStyle();
 
@@ -149,7 +146,7 @@ namespace RuntimeSqlDataSourceReportSample
             evenStyle.StyleUsing.UseBackColor = true;
             evenStyle.Name = "EvenStyle";
 
-            report.StyleSheet.AddRange(new XRControlStyle[] { oddStyle, evenStyle });
+            report.StyleSheet.AddRange(new XRControlStyle[] { oddStyle,evenStyle });
 
             tableDetail.OddStyleName = "OddStyle";
             tableDetail.EvenStyleName = "EvenStyle";
@@ -170,6 +167,8 @@ namespace RuntimeSqlDataSourceReportSample
         {
             AdjustTableWidth(sender as XRTable);
         }
+        #endregion
+
         #endregion
     }
 }
