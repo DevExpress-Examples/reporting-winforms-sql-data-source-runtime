@@ -68,6 +68,8 @@ namespace RuntimeSqlDataSourceReportSample
             labelDetail.TopF = detailBand.LocationFloat.Y + 20F;
             detailBand.Controls.Add(labelDetail);
         }
+        #endregion
+            
         #region CreateDetailReport  
         private static void CreateDetailReport(XtraReport report,string dataMember) {
             // Create a detail report band and bind it to data.  
@@ -167,8 +169,6 @@ namespace RuntimeSqlDataSourceReportSample
         {
             AdjustTableWidth(sender as XRTable);
         }
-        #endregion
-
         #endregion
     }
 }
